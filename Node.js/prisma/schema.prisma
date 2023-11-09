@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"  // 사용하는 db
+  url      = env("DATABASE_URL")  // 프로젝트에 .env라는파일안에 "DATABASE_URL" 이라는 값을 갖고와서 그 값을 사용한다.( 환경변수 프로그램"실행"에 필요한 변수 를 저장하는 파일)
+}
+
+model User{
+  id String @id @default(uuid())
+
+  name String @db.VarChar(200)
+  email String @db.VarChar(200)
+  phoneNumber String @db.Char(11)
+  age Int
+  posts Post[]  // User는 여러개의 Post를 갖을 수 있어 배열 posts Post[] 로 한다 그게 아니면 post Post? 로 하면 됨.
+}
+
+model Post {
+  id String @id @default(uuid())
+
+  title String @db.VarChar(200)
+  content String @db.LongText
+
+  userId String  // fk
+  user User @relation(fields: [userId], references: [id]) // 게시글에는 작성자가 꼭 있어야 돼서 null 값을 허용 하지 않는다
+  // fields - Post 테이블에 어떤거를 fk로 쓸것인지 , references - User테이블에 어떤 값을 연동할것인지
+
+}
