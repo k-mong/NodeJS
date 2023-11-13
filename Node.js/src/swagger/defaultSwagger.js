@@ -1,9 +1,10 @@
 const defaultSwagger = {
     openapi: "3.0.0",
     info: {
+        // 제목
         version: "1.0.0",
-        title: "스웨거 연습",
-        description: "스웨거 연습용 페이지 입니다.",
+        title: "kmong project 스웨거",
+        description: "user swagger.",
     },
 };
 

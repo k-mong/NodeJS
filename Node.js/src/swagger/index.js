@@ -1,11 +1,15 @@
-import * as Swagger from "../controllers/swagger";
+import * as UserSwagger from '../users/swagger';
 import defaultSwagger from "./defaultSwagger";
-console.log(Swagger);
+
+
+const Swaggers = {
+    ...UserSwagger,
+};
 
 // (1) 가공하는 코드
 // paths 라는 객체안에 객체를 만들어 객체 안에 값은 Swagger 를 다 합쳐서 넣어줘
 // 그 합친 값들이 acc, apis 
-const{ paths } = Object.values(Swagger).reduce(
+const{ paths } = Object.values(Swaggers).reduce(
     (acc, apis)=>{
         const APIs = Object.values(apis).map((api)=>{
             return {...api};
@@ -43,6 +47,6 @@ export const swaggerDocs = {
 // 이 부분은 복사 붙여넣기 해서 사용하기
 export const options = {
     swaggerOptions: {
-        url: "swagger.json",
+        url: "/swagger.json",
     },
 };

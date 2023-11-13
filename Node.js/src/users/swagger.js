@@ -14,14 +14,14 @@ export const getUserSwagger = {
                 },
             ],
             responses: {    // 응답에 대한 내용
-                200: {    // 200번 응답
-                    content: { 
+                200: {    // 200번 응답(status코드)
+                    content: { //200번 응답은 어떤걸 넘겨 줄것인지
                         "application/json": {
                             schema: {   // 객체의 속성이나 값의 데이터 유형을 지정
                                 type: "object",
                                 properties: {
                                     user: {
-                                        type: "object",
+                                        type: "object", //Users 는 배열 user은 object
                                         properties: {
                                             id: {
                                                 type: "number",

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { USerDTO, CreateUserDTO } from "./dto/UserDTO";
+import { UserDTO, CreateUserDTO } from "../dto";
 
 // Router
 class UserController {
@@ -68,6 +68,7 @@ class UserController {
             }
             
             const user = new UserDTO.userFullName(targetUser);
+            
 
             res.status(200).json({ fullName: user.getFullName() });
         }catch(err){
@@ -81,7 +82,7 @@ class UserController {
             const {firstName, lastName, age} = req.body;
             
             if(!firstName || !lastName){
-                throw { stasts: 400, message: "이름을 입력해 주세요" };
+                throw { status: 400, message: "이름을 입력해 주세요" };
             }else if(!age){
                 throw { status: 400, message: "나이를 입력해 주세요" };
             }
